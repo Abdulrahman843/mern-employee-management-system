@@ -9,6 +9,7 @@ import {
   getMonthlyPayrollSummary,
   getPayrollByDepartment,
   getMonthlySalaryStats,
+  getSalaryStats,
 
 } from "../controllers/salaryController.js";
 
@@ -31,5 +32,8 @@ router.get("/summary-by-department", verifyToken, verifyRole("admin"), getPayrol
 
 
 router.get("/salary-stats", verifyToken, verifyRole("admin"), getMonthlySalaryStats);
+
+router.get("/stats", verifyToken, verifyRole("admin"), getSalaryStats);
+
 
 export default router;

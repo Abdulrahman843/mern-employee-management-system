@@ -1,4 +1,33 @@
 import Department from "../models/Department.js";
+import Employee from "../models/Employee.js";
+import User from "../models/User.js";
+
+const getDepartmentsWithCount = async (req, res) => {
+  try {
+    const data = await User.aggregate([
+      { $match: { department: { $exists: true, $ne: null } } },
+      {
+        $group: {
+          _id: "$department",
+          count: { $sum: 1 }
+        }
+      }
+    ]);
+
+    const formatted = await Promise.all(data.map(async item => {
+      const dep = await Department.findById(item._id).lean();
+      return {
+        department: dep?.name || "Unknown",
+        count: item.count
+      };
+    }));
+
+    res.status(200).json({ success: true, data: formatted });
+  } catch (err) {
+    console.error("Department chart error:", err);
+    res.status(500).json({ success: false, error: "Failed to load departments" });
+  }
+};
 
 // ✅ Add new department
 const addDepartment = async (req, res) => {
@@ -68,5 +97,6 @@ export {
   getDepartments,
   getDepartment,
   updateDepartment,
-  deleteDepartment
+  deleteDepartment,
+  getDepartmentsWithCount
 };

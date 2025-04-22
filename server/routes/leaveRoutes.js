@@ -37,6 +37,15 @@ router.get("/all", verifyToken, verifyRole("admin"), getAllLeaves);
 // ✅ Get approved leaves (calendar)
 router.get("/calendar", verifyToken, verifyRole("admin"), getApprovedLeaves);
 
+// ✅ Trends for charts
+router.get("/trends", verifyToken, verifyRole("admin"), getLeaveTrends);
+
+// ✅ Stats for dashboard
+router.get("/leave-stats", verifyToken, verifyRole("admin"), getLeaveStats);
+
+// ✅ Excel export
+router.get("/export", verifyToken, verifyRole("admin"), exportLeavesToExcel);
+
 // ✅ Get leaves by employee
 router.get("/employee/:employeeId", verifyToken, getLeavesByEmployee);
 
@@ -46,13 +55,6 @@ router.get("/:id", verifyToken, getLeaveById);
 // ✅ Update status manually
 router.put("/:id/status", verifyToken, verifyRole("admin"), updateLeaveStatus);
 
-// ✅ Trends for charts
-router.get("/trends", verifyToken, verifyRole("admin"), getLeaveTrends);
 
-// ✅ Stats for dashboard
-router.get("/leave-stats", verifyToken, verifyRole("admin"), getLeaveStats);
-
-// ✅ Excel export
-router.get("/export", verifyToken, verifyRole("admin"), exportLeavesToExcel);
 
 export default router;

@@ -60,7 +60,7 @@ app.use("/api/dashboard", dashboardRoutes);
 app.use("/api/employees", employeeRoutes);
 app.use("/api/salaries", salaryRoutes);
 app.use("/api/attendance", attendanceRoutes);
-app.use("/api/leave", leaveRoutes);
+app.use("/api/leaves", leaveRoutes);
 app.use("/api/analytics", analyticsRoutes);
 app.use("/api/departments", departmentRoutes);
 app.use("/api/files", fileRoutes);

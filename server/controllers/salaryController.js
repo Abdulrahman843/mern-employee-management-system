@@ -158,3 +158,28 @@ export const getMonthlySalaryStats = async (req, res) => {
     res.status(500).json({ success: false, error: err.message });
   }
 };
+
+export const getSalaryStats = async (req, res) => {
+  try {
+    const stats = await Salary.aggregate([
+      {
+        $group: {
+          _id: { $month: "$createdAt" },
+          total: { $sum: "$amount" },
+        }
+      },
+      { $sort: { _id: 1 } }
+    ]);
+
+    const formatted = stats.map((s) => ({
+      month: new Date(2000, s._id - 1).toLocaleString("default", { month: "short" }),
+      total: s.total,
+    }));
+
+    res.status(200).json(formatted);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+};
+
+

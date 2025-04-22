@@ -186,7 +186,7 @@ export const getLeaves = async (req, res) => {
 export const getLeaveTrends = async (req, res) => {
   try {
     const data = await Leave.aggregate([
-      { $match: { status: "Approved" } },
+      { $match: { status: "Approved", startDate: { $ne: null } } },
       {
         $group: {
           _id: { $month: "$startDate" },
@@ -196,16 +196,18 @@ export const getLeaveTrends = async (req, res) => {
       { $sort: { _id: 1 } },
     ]);
 
-    const formatted = data.map((item) => ({
-      month: new Date(2000, item._id - 1).toLocaleString("default", { month: "short" }),
-      count: item.count,
+    const formatted = Array.from({ length: 12 }, (_, i) => ({
+      month: new Date(0, i).toLocaleString("default", { month: "short" }),
+      count: data.find((d) => d._id === i + 1)?.count || 0,
     }));
 
     res.status(200).json(formatted);
   } catch (err) {
+    console.error("getLeaveTrends error:", err);
     res.status(500).json({ message: err.message });
   }
 };
+
 
 // ✅ 10. Export to Excel
 export const exportLeavesToExcel = async (req, res) => {

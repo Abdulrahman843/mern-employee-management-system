@@ -33,7 +33,7 @@ router.get("/trends", verifyToken, verifyRole("admin"), getAttendanceTrend);
 router.get("/summary", verifyToken, verifyRole("admin"), getAttendanceSummary);
 
 // 🆕 Bar chart stats
-router.get("/attendance-stats", verifyToken, verifyRole("admin"), getAttendanceStats);
+router.get("/stats", verifyToken, verifyRole("admin"), getAttendanceStats);
 
 
 export default router;

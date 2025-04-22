@@ -48,7 +48,7 @@ connectDB();
 app.use(cors({
   origin: [
     "http://localhost:5173",
-    "https://your-frontend.vercel.app", // ✅ Replace with your actual Vercel URL
+    "https://mern-employee-management-system.vercel.app"
   ],
   credentials: true,
 }));

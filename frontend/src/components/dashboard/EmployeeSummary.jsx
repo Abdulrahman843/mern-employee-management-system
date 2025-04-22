@@ -17,13 +17,13 @@ const EmployeeSummary = () => {
         console.log("TOKEN IN DASHBOARD:", token);
 
         const [salaryRes, leaveRes, attendanceRes] = await Promise.all([
-          api.get("/api/salaries/my", {
+          api.get("/salaries/my", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          api.get("/api/leave/my-summary", {
+          api.get("/leaves/my-summary", {
             headers: { Authorization: `Bearer ${token}` },
           }),
-          api.get("/api/attendance/my", {
+          api.get("/attendance/my", {
             headers: { Authorization: `Bearer ${token}` },
           }),
         ]);

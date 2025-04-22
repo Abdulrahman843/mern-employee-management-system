@@ -25,7 +25,7 @@ const DepartmentList = () => {
 
   const fetchDepartments = async () => {
     try {
-      const res = await api.get("/api/departments");
+      const res = await api.get("/departments");
       setDepartments(res.data.departments);
       setFiltered(res.data.departments);
     } catch (err) {
@@ -57,10 +57,10 @@ const DepartmentList = () => {
   const handleFormSubmit = async (formData) => {
     try {
       if (editData) {
-        await api.put(`/api/departments/${editData._id}`, formData);
+        await api.put(`/departments/${editData._id}`, formData);
         toast.success("✅ Department updated");
       } else {
-        await api.post("/api/departments", formData);
+        await api.post("/departments", formData);
         toast.success("✅ Department added");
       }
 
@@ -75,7 +75,7 @@ const DepartmentList = () => {
     if (!window.confirm("Are you sure you want to delete this department?")) return;
 
     try {
-      await api.delete(`/api/departments/${id}`);
+      await api.delete(`/departments/${id}`);
       setDepartments((prev) => prev.filter((dept) => dept._id !== id));
       toast.success("🗑️ Department deleted");
     } catch (err) {

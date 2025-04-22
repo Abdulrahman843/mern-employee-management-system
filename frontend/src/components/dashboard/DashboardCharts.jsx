@@ -39,14 +39,14 @@ const DashboardCharts = () => {
           statsRes,
           deptChartRes,
         ] = await Promise.all([
-          api.get("/api/attendance/trends", { headers }),
-          api.get("/api/salaries/salary-stats", { headers }),
-          api.get("/api/leaves/trends", { headers }),
-          api.get("/api/attendance/summary", { headers }),
-          api.get("/api/analytics/leaves-per-month", { headers }),
-          api.get("/api/salaries/summary-by-department", { headers }),
-          api.get("/api/analytics/dashboard-stats", { headers }),
-          api.get("/api/departments/with-count", { headers }),
+          api.get("/attendance/trends", { headers }),
+          api.get("/salaries/salary-stats", { headers }),
+          api.get("/leaves/trends", { headers }),
+          api.get("/attendance/summary", { headers }),
+          api.get("/analytics/leaves-per-month", { headers }),
+          api.get("/salaries/summary-by-department", { headers }),
+          api.get("/analytics/dashboard-stats", { headers }),
+          api.get("/departments/with-count", { headers }),
         ]);
 
         setAttendanceData(attTrend.data.data);
@@ -58,7 +58,7 @@ const DashboardCharts = () => {
         setAdminStats(statsRes.data || statsRes);
         setDepartmentData(deptChartRes.data || []); // ✅ NEW
       } catch (err) {
-        console.error("❌ Failed to load dashboard charts:", err);
+        console.error("❌ Failed to load dashboard charts:", err.response?.data || err.message);
       }
     };
 

@@ -14,7 +14,7 @@ const LeaveChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    api.get("/api/analytics/leaves-per-month").then((res) => {
+    api.get("/analytics/leaves-per-month").then((res) => {
       setData(res.data);
     });
   }, []);

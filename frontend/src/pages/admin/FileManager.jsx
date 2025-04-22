@@ -26,7 +26,7 @@ const FileManager = () => {
 
   const fetchFiles = async () => {
     try {
-      const res = await api.get("/api/files", {
+      const res = await api.get("/files", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setFiles(res.data.files);
@@ -56,7 +56,7 @@ const FileManager = () => {
 
     try {
       setUploading(true);
-      await api.post("/api/files/upload", formData, {
+      await api.post("/files/upload", formData, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
           "Content-Type": "multipart/form-data",

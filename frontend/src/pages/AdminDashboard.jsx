@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchDepartments = async () => {
       try {
-        const res = await api.get("/api/departments", {
+        const res = await api.get("/departments", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

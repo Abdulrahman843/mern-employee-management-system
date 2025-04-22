@@ -12,7 +12,7 @@ const AttendanceHeatmap = () => {
   useEffect(() => {
     const fetchAttendance = async () => {
       try {
-        const { data } = await api.get("/api/attendance/my", {
+        const { data } = await api.get("/attendance/my", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

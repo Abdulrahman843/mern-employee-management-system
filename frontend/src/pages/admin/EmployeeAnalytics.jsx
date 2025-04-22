@@ -20,7 +20,7 @@ const EmployeeAnalytics = () => {
   useEffect(() => {
     const fetchAnalytics = async () => {
       try {
-        const { data } = await api.get("/api/employees/analytics", {
+        const { data } = await api.get("/employees/analytics", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

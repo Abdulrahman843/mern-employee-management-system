@@ -20,6 +20,7 @@ const Login = () => {
     setLoading(true);
 
     try {
+      console.log('env dump:', import.meta.env);
       const res = await api.post(`${import.meta.env.VITE_API_URL}/auth/login`, {
         email,
         password,

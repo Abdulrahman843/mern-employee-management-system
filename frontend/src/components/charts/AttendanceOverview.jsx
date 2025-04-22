@@ -10,6 +10,7 @@ const AttendanceOverview = () => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
+        console.log("✅ ENV", import.meta.env.VITE_API_URL);
         const res = await api.get("/attendance/stats");
         setStats(res.data.stats);
       } catch (err) {

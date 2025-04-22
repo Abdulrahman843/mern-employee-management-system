@@ -18,7 +18,7 @@ const AdminLeavePage = () => {
   const fetchLeaves = useCallback(async () => {
     setLoading(true);
     try {
-      const { data } = await api.get("/api/leaves", {
+      const { data } = await api.get("/leaves", {
         params: { search: searchTerm, status: selectedStatus, page, limit },
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

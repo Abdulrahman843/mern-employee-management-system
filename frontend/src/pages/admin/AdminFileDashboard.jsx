@@ -9,7 +9,7 @@ const AdminFileDashboard = () => {
   useEffect(() => {
     const fetchFiles = async () => {
       try {
-        const { data } = await api.get("/api/files/all", {
+        const { data } = await api.get("/files/all", {
           headers: {
             Authorization: `Bearer ${localStorage.getItem("token")}`,
           },

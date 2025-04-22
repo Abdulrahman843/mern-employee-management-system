@@ -9,7 +9,7 @@ const SalaryChart = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    api.get("/salaries/monthly-summary")
+    api.get("/salaries/summary")
       .then((res) => setData(res.data))
       .catch((err) => console.error("Failed to fetch salary stats:", err));
   }, []);
